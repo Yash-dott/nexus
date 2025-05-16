@@ -1,10 +1,11 @@
+'use client';
 
 import { useState } from "react";
-import { useParams } from "react-router-dom";
-import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookText, Clock, Star, User, Award } from "lucide-react";
+import { Header } from "@/components/global";
+import { useParams } from 'next/navigation';
 
 const CourseDetail = () => {
   const { departmentId, courseSlug } = useParams();
@@ -12,7 +13,9 @@ const CourseDetail = () => {
   
   // Mock data - in a real app this would come from an API
   const courseData = {
+    // @ts-ignore
     title: courseSlug?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') || "Course Title",
+    // @ts-ignore
     department: departmentId?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') || "Department",
     instructor: "Prof. Sarah Wilson",
     institution: "Harvard Law School",
@@ -118,7 +121,7 @@ const CourseDetail = () => {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
+      <Header />
       <div className="pt-16 pb-16">
         {/* Course Header */}
         <section className="py-12 bg-gradient-to-b from-primary/10 via-background to-background">

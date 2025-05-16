@@ -1,6 +1,7 @@
+'use client';
 
 import { useState, useEffect, FC } from "react";
-import { Link, useLocation } from "react-router-dom";
+// import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
     NavigationMenu,
@@ -12,6 +13,8 @@ import {
 import { Search, Menu } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { departments } from "@/data";
+import Link from 'next/link'
+import { usePathname } from "next/navigation";
 
 
 
@@ -20,7 +23,7 @@ const Header: FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const location = useLocation();
+    const location = usePathname();
 
     // Handle scroll for sticky navbar effect
     useEffect(() => {
@@ -43,7 +46,7 @@ const Header: FC = () => {
 
     // Check if a link is active
     const isActiveLink = (path: string) => {
-        return location.pathname === path;
+        return location === path;
     };
 
     return (
@@ -51,7 +54,7 @@ const Header: FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center gap-4">
-                        <Link to="/" className="text-2xl font-bold text-primary hover:scale-105 transition-transform">LegalNexus</Link>
+                        <Link href="/" className="text-2xl font-bold text-primary hover:scale-105 transition-transform">LegalNexus</Link>
 
                         <NavigationMenu
                             onMouseEnter={() => setIsOpen(true)}
@@ -85,7 +88,7 @@ const Header: FC = () => {
                                                             <div className="space-y-4">
                                                                 {dept.courses.map((course) => (
                                                                     <Link
-                                                                        to={`/courses/${dept.id}/${course.title.toLowerCase().replace(/\s+/g, '-')}`}
+                                                                        href={`/courses/${dept.id}/${course.title.toLowerCase().replace(/\s+/g, '-')}`}
                                                                         key={course.title}
                                                                         className="group/course hover:bg-accent p-3 rounded-lg transition-colors block card-hover"
                                                                     >
@@ -109,17 +112,17 @@ const Header: FC = () => {
 
                                 {/* New navigation links with active state */}
                                 <NavigationMenuItem>
-                                    <Link to="/features" className={`px-4 py-2 nav-link ${isActiveLink('/features') ? 'font-bold text-primary' : ''}`}>
+                                    <Link href="/features" className={`px-4 py-2 nav-link ${isActiveLink('/features') ? 'font-bold text-primary' : ''}`}>
                                         Features
                                     </Link>
                                 </NavigationMenuItem>
                                 <NavigationMenuItem>
-                                    <Link to="/use-cases" className={`px-4 py-2 nav-link ${isActiveLink('/use-cases') ? 'font-bold text-primary' : ''}`}>
+                                    <Link href="/useCases" className={`px-4 py-2 nav-link ${isActiveLink('/use-cases') ? 'font-bold text-primary' : ''}`}>
                                         Use Cases
                                     </Link>
                                 </NavigationMenuItem>
                                 <NavigationMenuItem>
-                                    <Link to="/pricing" className={`px-4 py-2 nav-link ${isActiveLink('/pricing') ? 'font-bold text-primary' : ''}`}>
+                                    <Link href="/pricing" className={`px-4 py-2 nav-link ${isActiveLink('/pricing') ? 'font-bold text-primary' : ''}`}>
                                         Pricing
                                     </Link>
                                 </NavigationMenuItem>
@@ -137,7 +140,7 @@ const Header: FC = () => {
                             />
                         </div>
                         <Button asChild variant="default" className="bg-[#FF851B] hover:bg-[#FF851B]/90 text-white btn-hover-glow">
-                            <Link to="/login">Sign In</Link>
+                            <Link href="/auth/login">Sign In</Link>
                         </Button>
                     </div>
 
@@ -176,17 +179,17 @@ const Header: FC = () => {
                                 </div>
                             </div>
                         ))}
-                        <Link to="/features" className={`block py-2 ${isActiveLink('/features') ? 'font-bold text-primary' : ''}`}>
+                        <Link href="/features" className={`block py-2 ${isActiveLink('/features') ? 'font-bold text-primary' : ''}`}>
                             Features
                         </Link>
-                        <Link to="/use-cases" className={`block py-2 ${isActiveLink('/use-cases') ? 'font-bold text-primary' : ''}`}>
+                        <Link href="/use-cases" className={`block py-2 ${isActiveLink('/use-cases') ? 'font-bold text-primary' : ''}`}>
                             Use Cases
                         </Link>
-                        <Link to="/pricing" className={`block py-2 ${isActiveLink('/pricing') ? 'font-bold text-primary' : ''}`}>
+                        <Link href="/pricing" className={`block py-2 ${isActiveLink('/pricing') ? 'font-bold text-primary' : ''}`}>
                             Pricing
                         </Link>
                         <Button asChild variant="default" className="w-full mt-4 bg-[#FF851B] hover:bg-[#FF851B]/90 text-white">
-                            <Link to="/login">Sign In</Link>
+                            <Link href="/login">Sign In</Link>
                         </Button>
                     </div>
                 </div>

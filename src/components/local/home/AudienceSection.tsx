@@ -1,6 +1,6 @@
 import { type FC } from "react";
-import { Link } from "react-router-dom";
 import { audiences } from "@/data";
+import Link from "next/link";
 
 
 
@@ -12,7 +12,7 @@ const AudienceSection: FC = () => {
                     {audiences.map((audience) => (
                         <Link
                             key={audience.id}
-                            to={audience.href}
+                            href={audience.href}
                             className="group flex items-center px-2 py-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
                             <audience.icon className="h-4 w-4 mr-2" />

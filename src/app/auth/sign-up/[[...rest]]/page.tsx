@@ -1,11 +1,10 @@
-import { type FC } from 'react';
-import { SignUp } from '@clerk/clerk-react'
+import { SignUp } from '@clerk/nextjs'
 
-const Signup: FC = () => {
+const Signup = () => {
     return (<>
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <SignUp
-                signInUrl="/login"
+                signInUrl="/auth/login"
             />
         </div>
     </>);
