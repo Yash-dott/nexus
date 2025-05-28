@@ -1,3 +1,1 @@
-export { default as departments } from './departmentsData';
-export { default as audiences } from './audienceData';
-export { default as services } from './servicesData';
+export { aboutStatsData, ourValuesData, coursesData, assessmentSteps, plans, faqsData } from './homeData';
